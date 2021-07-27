@@ -1,0 +1,2 @@
+rootProject.name = "VolumeCalculator"
+include ':app'
