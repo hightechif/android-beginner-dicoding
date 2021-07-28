@@ -1,4 +1,4 @@
-package com.fadhil.myrecyclerview
+package com.fadhil.myrecyclerview.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.fadhil.myrecyclerview.Hero
+import com.fadhil.myrecyclerview.R
 
 class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
 
