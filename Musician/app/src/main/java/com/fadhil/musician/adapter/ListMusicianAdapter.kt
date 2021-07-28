@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.fadhil.musician.Musician
+import com.fadhil.musician.dto.Musician
 import com.fadhil.musician.R
 
 class ListMusicianAdapter(private val listMusician: ArrayList<Musician>) : RecyclerView.Adapter<ListMusicianAdapter.ListViewHolder>() {
@@ -20,23 +20,23 @@ class ListMusicianAdapter(private val listMusician: ArrayList<Musician>) : Recyc
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
-        var tvDetail: TextView = itemView.findViewById(R.id.tv_item_detail)
+        var tvDescription: TextView = itemView.findViewById(R.id.tv_item_description)
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.home_page, viewGroup, false)
+        val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row_musician, viewGroup, false)
         return ListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val hero = listMusician[position]
+        val musician = listMusician[position]
         Glide.with(holder.itemView.context)
-            .load(hero.photo)
+            .load(musician.photo)
             .apply(RequestOptions().override(55, 55))
             .into(holder.imgPhoto)
-        holder.tvName.text = hero.name
-        holder.tvDetail.text = hero.detail
+        holder.tvName.text = musician.name
+        holder.tvDescription.text = musician.description
 
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(listMusician[holder.adapterPosition])

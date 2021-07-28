@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Musician</string>
     <string name="musician_name">Nama Musisi</string>
+    <string name="description">Description</string>
     <string name="home">Home</string>
     <string name="detail">Detail</string>
     <string name="about">About</string>
