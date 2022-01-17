@@ -3,10 +3,12 @@ package com.fadhil.musician
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.fadhil.musician.databinding.ActivityMusicianDetailBinding
 import de.hdodenhof.circleimageview.CircleImageView
 
-class MusicianActivity : AppCompatActivity() {
+class MusicianDetailActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMusicianDetailBinding
     private lateinit var tvMusicianName: TextView
     private lateinit var tvMusicianDescription: TextView
     private lateinit var imgMusicianPhoto: CircleImageView
@@ -14,12 +16,14 @@ class MusicianActivity : AppCompatActivity() {
     companion object {
         const val MUSICIAN_NAME = "musician_name"
         const val MUSICIAN_DESCRIPTION = "musician_description"
-        const val MUSICIAN_PHOTO = 0
+        const val MUSICIAN_PHOTO = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.detail_page)
+        binding = ActivityMusicianDetailBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         tvMusicianName = findViewById(R.id.tv_musician_name)
         tvMusicianDescription = findViewById(R.id.tv_musician_description)
@@ -36,10 +40,10 @@ class MusicianActivity : AppCompatActivity() {
 
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putString(MUSICIAN_NAME, tvMusicianName.text.toString())
-//        outState.putString(MUSICIAN_DESCRIPTION, tvMusicianDescription.text.toString())
-//        outState.putString(MUSICIAN_PHOTO, imgMusicianPhoto.resources.toString())
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(MUSICIAN_NAME, tvMusicianName.text.toString())
+        outState.putString(MUSICIAN_DESCRIPTION, tvMusicianDescription.text.toString())
+        outState.putString(MUSICIAN_PHOTO, imgMusicianPhoto.resources.toString())
+    }
 }

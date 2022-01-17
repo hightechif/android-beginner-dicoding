@@ -1,4 +1,4 @@
-package com.fadhil.musician.dto
+package com.fadhil.musician.dao
 
 data class Musician (
     var id: Long = 0,

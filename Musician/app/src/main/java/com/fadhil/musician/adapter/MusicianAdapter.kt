@@ -8,29 +8,29 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.fadhil.musician.dto.Musician
+import com.fadhil.musician.dao.Musician
 import com.fadhil.musician.R
 
-class ListMusicianAdapter(private val listMusician: ArrayList<Musician>) : RecyclerView.Adapter<ListMusicianAdapter.ListViewHolder>() {
+class MusicianAdapter(private val musicianList: ArrayList<Musician>) : RecyclerView.Adapter<MusicianAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvName: TextView = itemView.findViewById(R.id.tv_item_name)
         var tvDescription: TextView = itemView.findViewById(R.id.tv_item_description)
         var imgPhoto: ImageView = itemView.findViewById(R.id.img_item_photo)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val view: View = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_row_musician, viewGroup, false)
-        return ListViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val musician = listMusician[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val musician = musicianList[position]
         Glide.with(holder.itemView.context)
             .load(musician.photo)
             .apply(RequestOptions().override(55, 55))
@@ -39,12 +39,12 @@ class ListMusicianAdapter(private val listMusician: ArrayList<Musician>) : Recyc
         holder.tvDescription.text = musician.description
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listMusician[holder.adapterPosition])
+            onItemClickCallback.onItemClicked(musicianList[holder.adapterPosition])
         }
     }
 
     override fun getItemCount(): Int {
-        return listMusician.size
+        return musicianList.size
     }
 
     interface OnItemClickCallback {

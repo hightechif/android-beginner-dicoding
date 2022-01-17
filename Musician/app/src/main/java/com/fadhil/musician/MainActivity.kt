@@ -7,14 +7,14 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.fadhil.musician.adapter.ListMusicianAdapter
+import com.fadhil.musician.adapter.MusicianAdapter
 import com.fadhil.musician.data.MusicianData
-import com.fadhil.musician.dto.Musician
+import com.fadhil.musician.databinding.ActivityMainBinding
+import com.fadhil.musician.dao.Musician
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var rvMusician: RecyclerView
+    private lateinit var binding: ActivityMainBinding
 
     companion object {
         private var musicianList: ArrayList<Musician> = arrayListOf()
@@ -24,22 +24,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         setActionBarTitle(title)
 
-        rvMusician = findViewById(R.id.rv_musician)
-        rvMusician.setHasFixedSize(true)
+        binding.rvMusician.setHasFixedSize(true)
 
         musicianList.addAll(MusicianData.listData)
-        showHomePage()
+        showMusicianList()
     }
 
-    private fun showHomePage() {
-        rvMusician.layoutManager = LinearLayoutManager(this)
-        val listMusicianAdapter = ListMusicianAdapter(musicianList)
-        rvMusician.adapter = listMusicianAdapter
+    private fun showMusicianList() {
+        binding.rvMusician.layoutManager = LinearLayoutManager(this)
+        val listMusicianAdapter = MusicianAdapter(musicianList)
+        binding.rvMusician.adapter = listMusicianAdapter
 
-        listMusicianAdapter.setOnItemClickCallback(object : ListMusicianAdapter.OnItemClickCallback {
+        listMusicianAdapter.setOnItemClickCallback(object : MusicianAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Musician) {
                 showMusicianDetailPage(data)
             }
@@ -47,49 +48,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.overflow_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        setMode(item.itemId)
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun setMode(selectedMode: Int) {
-        when (selectedMode) {
-            R.id.home_page -> {
-                title = "Home"
-                showHomePage()
-            }
-
-            R.id.about_page -> {
-                title = "About"
+        when (item.itemId) {
+            R.id.aboutPage -> {
                 showAboutPage()
             }
         }
-        setActionBarTitle(title)
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showAboutPage() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
     }
 
     private fun showMusicianDetailPage(musician: Musician) {
         Toast.makeText(this, "Kamu memilih " + musician.name, Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@MainActivity, MusicianActivity::class.java)
+        val intent = Intent(this, MusicianDetailActivity::class.java)
         intent.putExtra("MUSICIAN_NAME", musician.name)
         intent.putExtra("MUSICIAN_DESCRIPTION", musician.description)
         intent.putExtra("MUSICIAN_PHOTO", musician.photo)
         startActivity(intent)
     }
 
-    private fun showAboutPage() {
-        setContentView(R.layout.about_page)
-    }
-
     private fun setActionBarTitle(title: String) {
         supportActionBar?.title = title
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putString(MainActivity.musicianList, rvMusician)
-//    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("musicianList", binding.rvMusician.toString())
+    }
 }

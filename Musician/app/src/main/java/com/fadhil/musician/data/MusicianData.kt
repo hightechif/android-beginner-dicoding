@@ -1,7 +1,7 @@
 package com.fadhil.musician.data
 
 import com.fadhil.musician.R
-import com.fadhil.musician.dto.Musician
+import com.fadhil.musician.dao.Musician
 
 object MusicianData {
     private val musicianNames = arrayOf("Ardhito Pramono",
@@ -16,7 +16,7 @@ object MusicianData {
         "Kunto Aji")
 
     private val musicianDescriptions = arrayOf("Musisi yang sering menciptakan lagu pop jazz",
-        "Performaer yang sering tampil dengan fenomenal",
+        "Performer yang sering tampil dengan fenomenal",
         "Musisi perempuan dengan lagu paling galau",
         "Salah seorang musisi yang sering menciptakan lagu akustik",
         "Musisi pop alternatif internasional",
