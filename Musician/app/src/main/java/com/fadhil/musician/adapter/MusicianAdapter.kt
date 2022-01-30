@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.fadhil.musician.dao.Musician
+import com.fadhil.musician.model.Musician
 import com.fadhil.musician.R
+import timber.log.Timber
 
 class MusicianAdapter(private val musicianList: ArrayList<Musician>) : RecyclerView.Adapter<MusicianAdapter.ViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -31,6 +32,7 @@ class MusicianAdapter(private val musicianList: ArrayList<Musician>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val musician = musicianList[position]
+        Timber.i("onBindViewHolder: $musician")
         Glide.with(holder.itemView.context)
             .load(musician.photo)
             .apply(RequestOptions().override(55, 55))

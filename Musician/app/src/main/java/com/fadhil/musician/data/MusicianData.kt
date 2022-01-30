@@ -1,7 +1,7 @@
 package com.fadhil.musician.data
 
 import com.fadhil.musician.R
-import com.fadhil.musician.dao.Musician
+import com.fadhil.musician.model.Musician
 
 object MusicianData {
     private val musicianNames = arrayOf("Ardhito Pramono",

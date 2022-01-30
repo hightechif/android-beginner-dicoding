@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fadhil.musician.adapter.MusicianAdapter
 import com.fadhil.musician.data.MusicianData
 import com.fadhil.musician.databinding.ActivityMainBinding
-import com.fadhil.musician.dao.Musician
+import com.fadhil.musician.model.Musician
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,10 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        setActionBarTitle(title)
+        setContentView(binding.root)
 
+        setActionBarTitle(title)
         binding.rvMusician.setHasFixedSize(true)
 
         musicianList.addAll(MusicianData.listData)
