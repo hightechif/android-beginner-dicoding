@@ -1,8 +1,11 @@
 package com.fadhil.musician
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fadhil.musician.databinding.ActivityMusicianDetailBinding
+
 
 class MusicianDetailActivity : AppCompatActivity() {
 
@@ -27,6 +30,14 @@ class MusicianDetailActivity : AppCompatActivity() {
         binding.tvMusicianName.text = name
         binding.tvMusicianDescription.text = description
         binding.imgMusicianPhoto.setImageResource(photoId ?: 0)
+
+        binding.btnSetShare.setOnClickListener {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, "$name: $description")
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "$name")
+            startActivity(Intent.createChooser(sharingIntent, "Share musician"))
+        }
 
     }
 

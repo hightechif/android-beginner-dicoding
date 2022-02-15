@@ -58,35 +58,19 @@
                 android:ellipsize="end"
                 tools:text="@string/detail" />
 
-            <LinearLayout
-                android:id="@+id/layout_button"
+            <Button
+                android:id="@+id/btn_set_share"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="@dimen/size_16_dp"
                 android:layout_marginTop="@dimen/size_16_dp"
+                android:layout_marginEnd="@dimen/size_16_dp"
+                android:layout_marginBottom="@dimen/size_16_dp"
                 android:layout_toEndOf="@+id/img_musician_photo"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_set_favorite"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/favorite"
-                    android:textSize="@dimen/text_10_sp" />
-
-                <Button
-                    android:id="@+id/btn_set_share"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/share"
-                    android:textSize="@dimen/text_10_sp" />
-
-            </LinearLayout>
+                android:text="@string/share"
+                android:textSize="@dimen/text_10_sp" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
