@@ -17,13 +17,13 @@ object MusicianData {
 
     private val musicianDescriptions = arrayOf("Musisi yang sering menciptakan lagu pop jazz",
         "Performer yang sering tampil dengan fenomenal",
-        "Musisi perempuan dengan lagu paling galau",
+        "Musisi perempuan dengan lagu-lagi paling galau",
         "Salah seorang musisi yang sering menciptakan lagu akustik",
         "Musisi pop alternatif internasional",
         "Musisi pop yang cukup terkenal",
         "Musisi jazz sepanjang masa",
         "Musisi dengan musik-musik indie",
-        "Musik Pop and RnB",
+        "Musisi dengan karya-karya bergenre Pop and RnB",
         "Terkenal dengan musik-musiknya yang menenangkan jiwa")
 
     private val musicianImages = intArrayOf(
@@ -42,7 +42,7 @@ object MusicianData {
     val listData: ArrayList<Musician>
         get() {
             val list = arrayListOf<Musician>()
-            var id : Long = 1;
+            var id : Long = 1
             for (position in musicianNames.indices) {
                 val musician = Musician()
                 musician.id = id

@@ -26,7 +26,7 @@ class MusicianDetailActivity : AppCompatActivity() {
 
         binding.tvMusicianName.text = name
         binding.tvMusicianDescription.text = description
-        binding.imgMusicianPhoto.setImageResource(photoId?:0)
+        binding.imgMusicianPhoto.setImageResource(photoId ?: 0)
 
     }
 

@@ -41,7 +41,7 @@ class MusicianAdapter(private val musicianList: ArrayList<Musician>) : RecyclerV
         holder.tvDescription.text = musician.description
 
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(musicianList[holder.adapterPosition])
+            onItemClickCallback.onItemClicked(musicianList[holder.bindingAdapterPosition])
         }
     }
 
