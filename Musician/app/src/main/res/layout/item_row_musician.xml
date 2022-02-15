@@ -28,7 +28,7 @@
             android:id="@+id/tv_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/font_16_sp"
+            android:textSize="@dimen/text_16_sp"
             android:textStyle="bold"
             tools:text="@string/musician_name" />
 
